@@ -12,13 +12,13 @@ jobs:
       matrix:
         include:
           - environment: staging
-            bucket_env: STAGING_BUCKET_NAME
-            cloudfront_env: STAGING_CLOUDFRONT_ARN
+            bucket_env: CL_DASHBOARD_STAGING_BUCKET_NAME
+            cloudfront_env: CL_DASHBOARD_STAGING_CLOUDFRONT_ARN
             branch: staging
 
           - environment: production
-            bucket_env: PRODUCTION_BUCKET_NAME
-            cloudfront_env: PRODUCTION_CLOUDFRONT_ARN
+            bucket_env: CL_DASHBOARD_PRODUCTION_BUCKET_NAME
+            cloudfront_env: CL_DASHBOARD_PRODUCTION_CLOUDFRONT_ARN
             branch: main
     environment: ${{ matrix.environment }}
     steps:
