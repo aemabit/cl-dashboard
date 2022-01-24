@@ -19,7 +19,7 @@ const columns: GridColDef[] = [
         field: "qty",
         headerClassName: "super-app-theme--header",
         headerName: "Qty",
-        width: 30,
+        width: 70,
     },
     {
         field: "From",
@@ -134,7 +134,7 @@ const DataTable: React.FC<{ title: string }> = ({ title }) => {
         <div
             style={{
                 height: 380,
-                width: "600px",
+                width: "100%",
                 background: "#23242c",
                 borderRadius: "16px"
             }}

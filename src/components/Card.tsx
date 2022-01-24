@@ -1,17 +1,18 @@
-import * as React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+import * as React from "react";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { CardActionArea } from "@mui/material";
 
 export type CardComponentProps = {
-    imgUrl: string;
+    imgUrl?: string;
     height?: string | number;
     alt?: string;
     maxWidth?: number;
     children?: React.ReactNode;
     style?: React.CSSProperties;
+    src?: string;
 };
 
 const CardComponent: React.FC<CardComponentProps> = ({
@@ -21,17 +22,22 @@ const CardComponent: React.FC<CardComponentProps> = ({
     maxWidth = 345,
     children,
     style,
+    src,
 }) => {
     return (
-        <Card sx={{ maxWidth: maxWidth, ...style }}>
+        <Card sx={{ width: "23%", ...style }}>
             <CardActionArea>
                 <CardMedia
                     component="img"
                     height={height}
-                    image={imgUrl}
+                    image="https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/10/25/16351831527188.jpg"
                     alt={alt}
                 />
-                {children && <CardContent style={{ background: "#212326"}}>{children}</CardContent>}
+                {children && (
+                    <CardContent style={{ background: "#212326" }}>
+                        {children}
+                    </CardContent>
+                )}
             </CardActionArea>
         </Card>
     );

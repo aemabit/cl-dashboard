@@ -54,16 +54,21 @@ const middleCardData = [
         title: "Bought",
         value: "85",
         footerText: "Last 90 Days",
+        assetPath: "icon-nft-bought.png",
+        isMetric: false,
     },
     {
         title: "Sold",
         value: "5",
         footerText: "Last 90 Days",
+        assetPath: "icon-nft-sold.png",
+        isMetric: false,
     },
     {
         title: "Earnings",
         value: "256",
         footerText: "ETH",
+        isMetric: true,
     },
 ];
 
@@ -175,6 +180,8 @@ const DashboardPage = () => {
                                     title={el.title}
                                     value={el.value}
                                     footerText={el.footerText}
+                                    isMetric={el.isMetric}
+                                    assetPath={el.assetPath}
                                 />
                             ))}
                         </Box>
