@@ -1,12 +1,10 @@
 name: Deploy to S3
 on:
-  workflow_dispatch:
-  workflow_run:
-    branches: 
+  push:
+    branches:
       - main
       - staging
-    types:
-      - completed
+  workflow_dispatch:
 jobs:
   deploy:
     name: Deploy
