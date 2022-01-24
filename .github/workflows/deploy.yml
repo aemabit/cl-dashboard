@@ -22,9 +22,6 @@ jobs:
             branch: main
     environment: ${{ matrix.environment }}
     steps:
-      - name: Review
-        run: echo ${{matrix.branch}} ${{github.event.workflow_run.head_branch}} 
-
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.event.workflow_run.head_branch }}
@@ -32,6 +29,8 @@ jobs:
         env:
           RUNS_ON_BRANCH: ${{ matrix.branch == github.event.workflow_run.head_branch }}
         run: |
+          echo ${{matrix.branch}}
+          echo ${{github.event.workflow_run.head_branch}}
           echo "::set-output name=runsBranch::$RUNS_ON_BRANCH"
 
       - uses: actions/setup-node@v2
