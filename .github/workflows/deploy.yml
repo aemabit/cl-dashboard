@@ -1,0 +1,64 @@
+name: Deploy to S3
+on:
+  workflow_dispatch:
+  workflow_run:
+    branches: 
+      - main
+      - staging
+    types:
+      - completed
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - environment: staging
+            bucket_env: STAGING_BUCKET_NAME
+            cloudfront_env: STAGING_CLOUDFRONT_ARN
+            branch: staging
+
+          - environment: production
+            bucket_env: PRODUCTION_BUCKET_NAME
+            cloudfront_env: PRODUCTION_CLOUDFRONT_ARN
+            branch: main
+    environment: ${{ matrix.environment }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.workflow_run.head_branch }}
+      - id: check
+        env:
+          RUNS_ON_BRANCH: ${{ matrix.branch == github.event.workflow_run.head_branch }}
+        run: |
+          echo "::set-output name=runsBranch::$RUNS_ON_BRANCH"
+
+      - uses: actions/setup-node@v2
+        if: ${{ steps.check.outputs.runsBranch == 'true' }}
+        with:
+          node-version: '14'
+      
+      - name: Install
+        if: ${{ steps.check.outputs.runsBranch == 'true' }}
+        run: npm install
+
+      - name: Build
+        if: ${{ steps.check.outputs.runsBranch == 'true' }}
+        run: npm run build
+          
+      - name: Configure AWS Creds
+        if: ${{ steps.check.outputs.runsBranch == 'true' }}
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: ${{ secrets.AWS_REGION }}
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      
+      - name: Push to S3
+        if: ${{ steps.check.outputs.runsBranch == 'true' }}
+        env:
+          BUCKET_NAME: ${{ secrets[matrix.bucket_env] }}
+        run: aws s3 sync build/ s3://$BUCKET_NAME --delete
+
+        
