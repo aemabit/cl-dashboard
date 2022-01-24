@@ -1,0 +1,8 @@
+config:
+  aws:region: us-east-1
+  cl-dashboard:acmCertificateId: arn:aws:acm:us-east-1:831151063444:certificate/55de1493-3946-400e-b2c0-76b537c2805e
+  cl-dashboard:domain: cl-dashboard-staging.aemabit53.com
+  cl-dashboard:githubRepoName: cl-dashboard
+  cl-dashboard:iamUser: cl-dashboard-user
+  cl-dashboard:zoneId: Z10109918P28HBCGML88
+  github:owner: aemabit
