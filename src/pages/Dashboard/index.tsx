@@ -1,6 +1,6 @@
 import { Widgets } from "@mui/icons-material";
 import Menu from "@mui/icons-material/Menu";
-import { IconButton, Typography } from "@mui/material";
+import { Avatar, IconButton, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import AreaChartComponent from "components/AreaChart";
 import BubbleCard from "components/BubbleCard";
@@ -11,6 +11,7 @@ import PieChartComponent from "components/PieChart";
 import PrivateLayout from "modules/app/AppLayout";
 import { useState } from "react";
 import DashboardCardComponent from "./DashboardCardComponent";
+import DashboardHeaderComponent from "./DashboardHeaderComponent";
 import DashboardTable from "./DashboardTableComponent";
 
 const nftMngOpt: FilterOpt[] = [
@@ -86,6 +87,60 @@ const DashboardPage = () => {
                     width: "100%",
                 }}
             >
+                <DashboardHeaderComponent/>
+
+                <Box
+                    style={{
+                        display: "flex",
+                        width: "100%",
+                        alignItems: "center",
+                    }}
+                >
+                    <Typography
+                        variant="h6"
+                        color="common.white"
+                        style={{ margin: "25px 0px", flexGrow: 0.45 }}
+                    >
+                        My Stats
+                    </Typography>
+                    <Box style={{ display: "flex" }}>
+                        {[
+                            {
+                                title: "My Stats",
+                                iconPath: "icon-menu-stats.png",
+                            },
+                            {
+                                title: "Explore",
+                                iconPath: "icon-menu-explore.png",
+                            },
+                        ].map((el, index) => (
+                            <Box
+                                key={index + "a"}
+                                style={{ display: "flex" }}
+                                className={
+                                    el.title === "Explore"
+                                        ? "MuiCustomHeaderBoxUnselected"
+                                        : "MuiCustomHeaderBox"
+                                }
+                            >
+                                <Avatar
+                                    style={{
+                                        width: "16px",
+                                        height: "16px",
+                                        marginRight: "5px",
+                                    }}
+                                    src={require(`assets/${el.iconPath}`)}
+                                />
+                                <Typography
+                                    variant="caption"
+                                    color="common.white"
+                                >
+                                    {el.title}
+                                </Typography>
+                            </Box>
+                        ))}
+                    </Box>
+                </Box>
                 <Box
                     sx={{
                         display: "flex",

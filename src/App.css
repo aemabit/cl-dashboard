@@ -19,3 +19,20 @@
     display: none !important;
 }
 
+.MuiCustomHeaderBox, .MuiCustomHeaderBoxUnselected {
+    width: 100px;
+    height: 34px;
+    margin: 0 1px 0 0;
+    padding: 9px 13px 9px 11px;
+    border-radius: 8px;
+    box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.03);
+    background-color: #383b3f;
+}
+
+.MuiCustomHeaderBoxUnselected{
+    background-color: #212326 !important;
+}
+
+.MuiCustomHeaderMiddle{
+    background:"white"; 
+}

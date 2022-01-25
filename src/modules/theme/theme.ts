@@ -14,7 +14,7 @@ const theme = createTheme({
             white: '#fff',
         },
         info: {
-            main: '#42a5f5',
+            main: '#228efd',
         },
         error: {
             main: red.A400,
