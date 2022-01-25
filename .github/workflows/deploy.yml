@@ -27,9 +27,8 @@ jobs:
           ref: ${{ github.event.workflow_run.head_branch }}
       - id: check
         env:
-          RUNS_ON_BRANCH: ${{ matrix.branch == github.event.workflow_run.head_branch }}
+          RUNS_ON_BRANCH: ${{ matrix.branch == github.ref_name }}
         run: |
-          echo ${{github.ref_name}}
           echo "::set-output name=runsBranch::$RUNS_ON_BRANCH"
 
       - uses: actions/setup-node@v2
