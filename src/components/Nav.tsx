@@ -5,17 +5,62 @@ import AppBar from "@mui/material/AppBar";
 import CssBaseline from "@mui/material/CssBaseline";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
-import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-import { IconButton } from "@mui/material";
-import { OfflineBolt } from "@mui/icons-material";
+import { Avatar } from "@mui/material";
 
 const drawerWidth = 240;
+
+const drawerMenuPrimary = [
+    {
+        routePath: "",
+        title: "Dashboard",
+        iconPath: "icon-menu-link-1.png",
+    },
+    {
+        routePath: "",
+        title: "Market Intel",
+        iconPath: "icon-menu-link-2.png",
+    },
+    {
+        routePath: "",
+        title: "Community",
+        iconPath: "icon-menu-link-3.png",
+    },
+    {
+        routePath: "",
+        title: "Competitions",
+        iconPath: "icon-menu-link-4.png",
+    },
+    {
+        routePath: "",
+        title: "Member Tools",
+        iconPath: "icon-menu-link-5.png",
+    },
+];
+
+const drawerMenuSecondary = [
+    {
+        routePath: "",
+        title: "Settings",
+        iconPath: "icon-menu-link-6.png",
+    },
+];
+
+const drawerMenuFooter = [
+    {
+        routePath: "",
+        title: "Account",
+        iconPath: "icon-menu-link-7.png",
+    },
+    {
+        routePath: "",
+        title: "Logout",
+        iconPath: "icon-menu-link-8.png",
+    },
+];
 
 const ClippedDrawer: React.FC<{ children: React.ReactNode }> = ({
     children,
@@ -25,15 +70,20 @@ const ClippedDrawer: React.FC<{ children: React.ReactNode }> = ({
             <CssBaseline />
             <AppBar
                 position="fixed"
-                sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                sx={{
+                    zIndex: (theme) => theme.zIndex.drawer + 1,
+                    background: "transparent",
+                    boxShadow: "none",
+                }}
             >
                 <Toolbar>
-                    <IconButton>
+                    <Avatar variant="square" src={require("assets/your-logo-here-drk.png")} style={{width: "210px"}} />
+                    {/* <IconButton>
                         <OfflineBolt style={{ color: "#228efd" }} />
                     </IconButton>
                     <Typography variant="h6" noWrap component="div">
                         CryptoLeague
-                    </Typography>
+                    </Typography> */}
                 </Toolbar>
             </AppBar>
             <Drawer
@@ -50,58 +100,121 @@ const ClippedDrawer: React.FC<{ children: React.ReactNode }> = ({
                 }}
             >
                 <Toolbar />
-                <Box sx={{ overflow: "auto" }}>
+                <Box
+                    sx={{
+                        marginTop:"35px",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                        height: "100%",
+                    }}
+                >
+                    <Box
+                        sx={{
+                            overflow: "auto",
+                        }}
+                    >
+                        <List>
+                            {drawerMenuPrimary.map((el, index) => (
+                                <ListItem
+                                    style={
+                                        el.title === "Dashboard"
+                                            ? { background: "#2A2E32" }
+                                            : { background: "transparent" }
+                                    }
+                                    button
+                                    key={el.title}
+                                >
+                                    <ListItemIcon>
+                                        <Avatar
+                                            style={{
+                                                width: "21px",
+                                                height: "21px",
+                                            }}
+                                            src={require(`assets/${el.iconPath}`)}
+                                        />
+                                    </ListItemIcon>
+                                    <ListItemText
+                                        style={
+                                            el.title === "Dashboard"
+                                                ? { color: "white" }
+                                                : {
+                                                      color: "white",
+                                                      opacity: "0.4",
+                                                  }
+                                        }
+                                        primary={el.title}
+                                    />
+                                </ListItem>
+                            ))}
+                        </List>
+                        <Divider />
+                        <List>
+                            {drawerMenuSecondary.map((el, index) => (
+                                <ListItem
+                                    style={
+                                        el.title === "Dashboard"
+                                            ? { background: "#2A2E32" }
+                                            : { background: "transparent" }
+                                    }
+                                    button
+                                    key={el.title}
+                                >
+                                    <ListItemIcon>
+                                        <Avatar
+                                            style={{
+                                                width: "21px",
+                                                height: "21px",
+                                            }}
+                                            src={require(`assets/${el.iconPath}`)}
+                                        />
+                                    </ListItemIcon>
+                                    <ListItemText
+                                        style={
+                                            el.title === "Dashboard"
+                                                ? { color: "white" }
+                                                : {
+                                                      color: "white",
+                                                      opacity: "0.4",
+                                                  }
+                                        }
+                                        primary={el.title}
+                                    />
+                                </ListItem>
+                            ))}
+                        </List>
+                    </Box>
                     <List>
-                        {[
-                            "Dashboard",
-                            "Market intel",
-                            "Competitions",
-                            "Member Tools",
-                        ].map((text, index) => (
-                            <ListItem button key={text}>
+                        {drawerMenuFooter.map((el, index) => (
+                            <ListItem
+                                style={
+                                    el.title === "Dashboard"
+                                        ? { background: "#2A2E32" }
+                                        : { background: "transparent" }
+                                }
+                                button
+                                key={el.title}
+                            >
                                 <ListItemIcon>
-                                    {index % 2 === 0 ? (
-                                        <InboxIcon
-                                            style={{ color: "#228efd" }}
-                                        />
-                                    ) : (
-                                        <MailIcon
-                                            style={{ color: "#228efd" }}
-                                        />
-                                    )}
+                                    <Avatar
+                                        style={{
+                                            width: "21px",
+                                            height: "21px",
+                                        }}
+                                        src={require(`assets/${el.iconPath}`)}
+                                    />
                                 </ListItemIcon>
                                 <ListItemText
-                                    style={{
-                                        color: "white",
-                                        opacity: "0.4",
-                                    }}
-                                    primary={text}
+                                    style={
+                                        el.title === "Dashboard"
+                                            ? { color: "white" }
+                                            : {
+                                                  color: "white",
+                                                  opacity: "0.4",
+                                              }
+                                    }
+                                    primary={el.title}
                                 />
-                            </ListItem>
-                        ))}
-                    </List>
-                    <Divider />
-                    <List>
-                        {["Settings"].map((text, index) => (
-                            <ListItem button key={text}>
-                                <ListItemIcon>
-                                    {index % 2 === 0 ? (
-                                        <InboxIcon
-                                            style={{ color: "#228efd" }}
-                                        />
-                                    ) : (
-                                        <MailIcon
-                                            style={{ color: "#228efd" }}
-                                        />
-                                    )}
-                                </ListItemIcon>
-                                <ListItemText
-                                    style={{
-                                        color: "white",
-                                        opacity: "0.4",
-                                    }}
-                                    primary={text}
-                                />{" "}
                             </ListItem>
                         ))}
                     </List>

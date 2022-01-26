@@ -6,6 +6,8 @@ export type MiddleCardProps = {
     value: string;
     footerText: string;
     image?: string;
+    assetPath?: string;
+    isMetric: boolean;
 };
 
 const MiddleCard: React.FC<MiddleCardProps> = ({
@@ -14,6 +16,8 @@ const MiddleCard: React.FC<MiddleCardProps> = ({
     value,
     footerText,
     image,
+    assetPath,
+    isMetric,
 }) => {
     return (
         <Box
@@ -42,10 +46,18 @@ const MiddleCard: React.FC<MiddleCardProps> = ({
                 </Typography>
             </Box>
             <Box>
-                <Avatar
-                    variant="square"
-                    style={{ width: "60px", height: "60px" }}
-                />
+                {isMetric ? (
+                    <Avatar
+                        variant="square"
+                        style={{ width: "60px", height: "60px" }}
+                    />
+                ) : (
+                    <Avatar
+                        src={image ? image : require(`assets/${assetPath}`)}
+                        variant="square"
+                        style={{ width: "60px", height: "60px" }}
+                    />
+                )}
             </Box>
         </Box>
     );

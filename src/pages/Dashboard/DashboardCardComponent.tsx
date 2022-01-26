@@ -2,7 +2,50 @@ import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import CardComponent from "components/Card";
 
-const CardComponentChild = () => {
+const DummyData = [
+    {
+        title: "Card Title Goes Here...",
+        creator: "By Creator",
+        purchased_price: "0.2",
+        current_price: "0.3",
+        nft_img_path: "bitmap4.png",
+    },
+    {
+        title: "Card Title Goes Here...",
+        creator: "By Creator",
+        purchased_price: "0.2",
+        current_price: "0.3",
+        nft_img_path: "bitmap3.png",
+    },
+    {
+        title: "Card Title Goes Here...",
+        creator: "By Creator",
+        purchased_price: "0.2",
+        current_price: "0.3",
+        nft_img_path: "bitmap2.png",
+    },
+    {
+        title: "Card Title Goes Here...",
+        creator: "By Creator",
+        purchased_price: "0.2",
+        current_price: "0.3",
+        nft_img_path: "bitmap1.png",
+    },
+];
+
+type CardComponentChildProps = {
+    title: string;
+    creator: string;
+    purchased_price: string;
+    current_price: string;
+};
+
+const CardComponentChild: React.FC<CardComponentChildProps> = ({
+    title,
+    creator,
+    purchased_price,
+    current_price,
+}) => {
     return (
         <Box>
             <Box sx={{ marginBottom: "10px" }}>
@@ -11,14 +54,14 @@ const CardComponentChild = () => {
                     color={"common.white"}
                     component="div"
                 >
-                    The Komodo dragon
+                    {title}
                 </Typography>
                 <Typography
                     variant="caption"
                     color={"common.white"}
                     sx={{ opacity: "0.4" }}
                 >
-                    Is the largest living lizard in the world.
+                    {creator}
                 </Typography>
             </Box>
             <Box
@@ -33,14 +76,14 @@ const CardComponentChild = () => {
                         color={"common.white"}
                         component="div"
                     >
-                        Komodo dragon
+                        Purchased
                     </Typography>
                     <Typography
                         variant="caption"
                         color={"common.white"}
                         sx={{ opacity: "0.4" }}
                     >
-                        Is the largest
+                        {purchased_price} ETH
                     </Typography>
                 </Box>
                 <Box sx={{ marginLeft: "8px" }}>
@@ -49,14 +92,14 @@ const CardComponentChild = () => {
                         color={"common.white"}
                         component="div"
                     >
-                        The dragon
+                        Current Price
                     </Typography>
                     <Typography
                         variant="caption"
                         color={"common.white"}
                         sx={{ opacity: "0.4" }}
                     >
-                        Living lizard in the world.
+                        {current_price} ETH
                     </Typography>
                 </Box>
             </Box>
@@ -73,16 +116,21 @@ const DashboardCardComponent = () => {
                 flexWrap: "wrap",
             }}
         >
-            {[1, 2, 3, 4].map((el) => {
+            {DummyData.map((el, index) => {
                 return (
                     <CardComponent
-                        key={el}
+                        key={index}
                         height={260}
                         maxWidth={400}
                         alt="some-here"
-                        imgUrl="https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/10/25/16351831527188.jpg"
+                        src={el.nft_img_path}
                     >
-                        <CardComponentChild />
+                        <CardComponentChild
+                            title={el.title}
+                            creator={el.creator}
+                            purchased_price={el.purchased_price}
+                            current_price={el.current_price}
+                        />{" "}
                     </CardComponent>
                 );
             })}

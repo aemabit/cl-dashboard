@@ -1,6 +1,4 @@
 import * as React from "react";
-import IconButton from "@mui/material/IconButton";
-import Tooltip from "@mui/material/Tooltip";
 import { Box, Typography } from "@mui/material";
 
 export type MiniFilterProps = {
@@ -29,9 +27,10 @@ const MiniFilter: React.FC<MiniFilterProps> = ({
                 width: "350px",
             }}
         >
-            {opt.map((op) => {
+            {opt.map((op, index) => {
                 return (
                     <Box
+                    key={index}
                         onClick={() => setSelected(op.title)}
                         style={{
                             background:
