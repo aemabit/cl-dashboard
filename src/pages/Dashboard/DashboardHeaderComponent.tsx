@@ -39,6 +39,7 @@ export default function DashboardHeaderComponent() {
                 <Box style={{ display: "flex", height: "70px" }}>
                     {menuHeader.map((el) => (
                         <Typography
+                            key={el}
                             style={{
                                 opacity: el === "NFT" ? 1 : 0.4,
                                 color: "white",
@@ -182,14 +183,20 @@ export default function DashboardHeaderComponent() {
                             </Typography>
                         </Box>
                     </Box>
-                    <Box style={{border: "solid 1px rgba(204, 207, 216, 0.38)", height:"30px", margin: "auto 6px"}}/>
+                    <Box
+                        style={{
+                            border: "solid 1px rgba(204, 207, 216, 0.38)",
+                            height: "30px",
+                            margin: "auto 6px",
+                        }}
+                    />
                     <Box
                         style={{
                             display: "flex",
                             alignItems: "center",
-                            height:"100%",
-                            width:"45%",
-                            justifyContent:"center"
+                            height: "100%",
+                            width: "45%",
+                            justifyContent: "center",
                         }}
                     >
                         <Typography
