@@ -79,12 +79,13 @@ const ClippedDrawer: React.FC<{ children: React.ReactNode }> = ({
                 }}
             >
                 <Toolbar>
-                    <IconButton>
+                    <Avatar variant="square" src={require("assets/your-logo-here-drk.png")} style={{width: "210px"}} />
+                    {/* <IconButton>
                         <OfflineBolt style={{ color: "#228efd" }} />
                     </IconButton>
                     <Typography variant="h6" noWrap component="div">
                         CryptoLeague
-                    </Typography>
+                    </Typography> */}
                 </Toolbar>
             </AppBar>
             <Drawer
@@ -103,6 +104,7 @@ const ClippedDrawer: React.FC<{ children: React.ReactNode }> = ({
                 <Toolbar />
                 <Box
                     sx={{
+                        marginTop:"35px",
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "space-between",

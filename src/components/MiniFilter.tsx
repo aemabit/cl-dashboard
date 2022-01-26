@@ -27,9 +27,10 @@ const MiniFilter: React.FC<MiniFilterProps> = ({
                 width: "350px",
             }}
         >
-            {opt.map((op) => {
+            {opt.map((op, index) => {
                 return (
                     <Box
+                    key={index}
                         onClick={() => setSelected(op.title)}
                         style={{
                             background:

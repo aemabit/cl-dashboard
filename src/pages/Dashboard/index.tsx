@@ -6,12 +6,20 @@ import AreaChartComponent from "components/AreaChart";
 import BubbleCard from "components/BubbleCard";
 import MiddleCard from "components/MiddleCard";
 import MiniFilter, { FilterOpt } from "components/MiniFilter";
-import PieChartComponent from "components/PieChart";
+import PieChartComponent, { PieChartDataProps } from "components/PieChart";
 import PrivateLayout from "modules/app/AppLayout";
 import { useState } from "react";
 import DashboardCardComponent from "./DashboardCardComponent";
 import DashboardHeaderComponent from "./DashboardHeaderComponent";
 import DashboardTable from "./DashboardTableComponent";
+
+const dataPieChart: PieChartDataProps[] = [
+    { name: "Photography", value: 300, color: "#d3019d" },
+    { name: "Utility", value: 300, color: "#755efc" },
+    { name: "Art", value: 400, color: "#3eebff" },
+    { name: "Trading Cards", value: 150, color: "#1d7cff" },
+    { name: "Collectables", value: 150, color: "#fbab31" },
+];
 
 const nftMngOpt: FilterOpt[] = [
     {
@@ -81,12 +89,11 @@ const DashboardPage = () => {
             <Box
                 sx={{
                     margin: "0px auto",
-                    // marginRight: "40px",
-                    padding: "90px",
+                    padding: "12px 90px 90px 90px",
                     width: "100%",
                 }}
             >
-                <DashboardHeaderComponent/>
+                <DashboardHeaderComponent />
 
                 <Box
                     style={{
@@ -255,10 +262,42 @@ const DashboardPage = () => {
                         >
                             NFT Allocation
                         </Typography>
-                        <Box>
-                            <PieChartComponent />
+                        <Box
+                            style={{
+                                display: "flex",
+                                justifyContent: "center",
+                                flexDirection: "column",
+                                alignItems: "center",
+                            }}
+                        >
+                            <PieChartComponent data={dataPieChart} />
                         </Box>
-                        <Box>GRAPHICA</Box>
+                        <Box style={{ display: "flex", flexWrap:"wrap", padding: "0px 25px"}}>
+                            {dataPieChart.map((el, index) => {
+                                return (
+                                    <Box
+                                        key={index + el.name}
+                                        style={{
+                                            display: "flex",
+                                            alignItems: "center",
+                                            width: "50%",
+                                            padding: "10px 0px"
+                                        }}
+                                    >
+                                        <Box
+                                            style={{
+                                                background: el.color,
+                                                borderRadius: "100%",
+                                                width: "8px",
+                                                height:"8px",
+                                                marginRight: "8px"
+                                            }}
+                                        ></Box>
+                                        <Typography variant="inherit" style={{ color: "#b3b8bf"}}>{el.name}</Typography>
+                                    </Box>
+                                );
+                            })}
+                        </Box>
                     </Box>
                 </Box>
                 <Typography

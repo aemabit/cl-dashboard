@@ -1,31 +1,36 @@
 import React from "react";
 import { PieChart, Pie, Cell } from "recharts";
 
-const data = [
-    { name: "Group A", value: 400 },
-    { name: "Group B", value: 300 },
-    { name: "Group C", value: 300 },
-    { name: "Group D", value: 200 },
-];
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+export type PieChartPropsType = {
+    data: PieChartDataProps[]
+    style?: React.CSSProperties
+}
 
-const PieChartComponent = () => {
+export type PieChartDataProps = {
+    name: string;
+    value: number;
+    color: string;
+}
+
+
+const PieChartComponent: React.FC<PieChartPropsType> = ({data, style = {}}) => {
     return (
-        <PieChart width={300} height={400}>
+        <PieChart width={250} height={400} style={style}>
             <Pie
                 data={data}
                 cx={120}
                 cy={200}
-                innerRadius={60}
-                outerRadius={80}
+                innerRadius={100}
+                outerRadius={120}
                 fill="#8884d8"
-                paddingAngle={5}
+                paddingAngle={0}
                 dataKey="value"
             >
                 {data.map((entry, index) => (
                     <Cell
                         key={`cell-${index}`}
-                        fill={COLORS[index % COLORS.length]}
+                        fill={entry.color}
+                        stroke="none"
                     />
                 ))}
             </Pie>
